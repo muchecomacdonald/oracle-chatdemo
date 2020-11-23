@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        var chatSettings = {
+            URI: 'oda-c7f2a22ecbb84e359c225822e86dd381-da4.data.digitalassistant.oci.oraclecloud.com',
+            channelId: '3eeb52ba-81e8-42c9-a241-fab21a5701fb',
+            userId: 'test'
+        };
+        function initSdk(name) {
+            // Default name is Bots
+            if (!name) {
+                name = 'Bots';
+            }
+            setTimeout(() => {
+                const Bots = new WebSDK(chatSettings); // Initiate library with configuration
+                Bots.connect()                         // Connect to server
+                    .then(() => {
+                        console.log('Connection Successful');
+                    })
+                    .catch((reason) => {
+                        console.log('Connection failed');
+                        console.log(reason);
+                    });
+                window[name] = Bots;
+            });
+        }
+    </script>
+    <script src="web-sdk.js" onload="initSdk('Bots')"></script>
+</head>
+<body>
+
+</body>
+</html>
